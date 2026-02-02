@@ -1,77 +1,111 @@
-HookNorton — Software Specification (Revised)
-1. Purpose & Scope
-HookNorton is a lightweight webhook/API testing service used during development and automated testing. It exposes a configurable fake HTTP API that records incoming requests and responds deterministically based on path and method configuration.
+# HookNorton — Software Specification
+
+## 1. Purpose & Scope
+
+HookNorton is a lightweight webhook/API testing service used during development and automated testing. It exposes a
+configurable fake HTTP API that records incoming requests and responds deterministically based on path and method
+configuration.
+
 The system prioritizes simplicity, debuggability, and determinism over scale or performance.
 
-2. High-Level Architecture
+## 2. High-Level Architecture
+
 Single-container application:
+
 * Backend: ASP.NET Core (Kestrel), C#
 * Frontend: React (TypeScript), served as static assets
 * Storage:
-    * In-memory (bounded) with optional persistence to local filesystem
-```text
-/opt/hooknorton
-├── config   (route configurations)
-└── data     (request history)
-```
-Persistence is optional and controlled by mounting volumes in containerized deployments.
+  * Bounded with persistence to local filesystem
 
-3. Core Concepts
-3.1 Route Configuration
+```text
+/app/data
+├── config   (route configurations)
+└── history  (request history)
+```
+
+Persistence across container restarts is achieved by mounting volumes.
+
+## 3. Core Concepts
+
+### 3.1 Route Configuration
+
 Each fake API route is defined by:
-* HTTP method (single method per route)
+
+* HTTP method (single valid method per route)
 * Path pattern (simple wildcard patterns, e.g. /api/orders/*)
 * Response:
-    * HTTP status code
-    * Headers
-    * Static body (text or JSON)
+  * HTTP status code
+  * Headers
+  * Static body (text or JSON)
 * Enabled/disabled flag (optional)
+
 Matching rules:
+
 * Method must match exactly
 * Path supports simple glob-style patterns
 * First matching route wins
 * If no route matches → 404 Not Found
 
-3.2 Request Recording
+### 3.2 Request Recording
+
 For every request received by the Fake API:
+
 * Timestamp
 * HTTP method
 * Path + query string
 * Headers
-* Raw request body (size-limited)
+* Raw request body (size-limited to a startup-configurable maximum)
+
 Request history characteristics:
+
 * Stored in-memory, capped to latest N requests
 * FIFO eviction when capacity is exceeded
-* Optionally persisted to /opt/hooknorton/data
+* Persisted to /opt/hooknorton/data
 * Raw body stored; UI may render JSON bodies as parsed JSON when applicable
 
-4. API Surface
-4.1 Developer API
+## 4. API Surface
+
+HookNorton is exposed via 3 groups of endpoints: the Developer API, the Fake API, and the Web UI. The Developer API and
+the Web UI are exposed on container port 8080 (HTTP) and 8081 (HTTPS). The Fake API is exposed on container ports 8180
+(HTTP) and 8181 (HTTPS).
+
+### 4.1 Developer API
+
 Used by the UI and external automation.
+
 Configuration endpoints
+
 * Create/update/delete route configurations
 * List all configured routes
 * Load/save configurations from /opt/hooknorton/config
+
 Request history endpoints
+
 * Retrieve latest N requests
 * Filter by path and/or method (optional)
 * Clear request history
+
 System endpoints
+
 * Health check
 * Reset configuration
 * Reset request history(configuration and history resets are separate actions)
 All endpoints are RESTful, JSON-based.
 
-4.2 Fake API
+### 4.2 Fake API
+
 * Catch-all HTTP handler
 * Accepts all HTTP methods
 * Matches requests against configured routes
 * Records every request before responding
 * Returns configured response or 404
+
 No artificial latency or dynamic response logic.
 
-4.3 Web UI
+### 4.3 Web UI
+
 React single-page application for manual inspection only:
+
 * View request history (latest N)
 * Inspect request details (headers, raw body, parsed JSON view)
 * Create/edit/delete route configurations
@@ -79,39 +113,42 @@ React single-page application for manual inspection only:
 * Clear history and/or configuration
 UI is a thin client over the Developer API.
 
-5. Backend Components
+## 5. Backend Components
+
 * FakeApiController / Middleware
-    * Handles all fake API traffic
+  * Handles all fake API traffic
 * RouteMatcher
-    * Simple pattern matching (glob-style)
+  * Simple pattern matching (glob-style)
 * RouteConfigStore
-    * In-memory representation + filesystem persistence
+  * In-memory representation + filesystem persistence
 * RequestRecorder
-    * Thread-safe, bounded request log
+  * Thread-safe, bounded request log
 * PersistenceService
-    * Reads/writes configs and history to /opt/hooknorton
+  * Reads/writes configs and history to `./data/config` and `./data/history` respectively
 * DeveloperApiControllers
-    * Management and inspection endpoints
+  * Management and inspection endpoints
 * Startup / Hosting
-    * Configurable:
-        * Max request history size (N)
-        * Max request body size
-        * Persistence enabled/disabled
+  * Configurable:
+    * Max request history size (N)
+    * Max request body size
+    * Persistence enabled/disabled
 
-6. Non-Functional Characteristics
+## 6. Non-Functional Characteristics
+
 * Deployment
-    * Single container
-    * Works with docker run, docker compose, .NET Aspire
+  * Single container
+  * Works with docker run, docker compose, .NET Aspire
 * Persistence
-    * Filesystem-based, optional
+  * Filesystem-based
 * Concurrency
-    * Thread-safe in-memory structures
+  * Thread-safe in-memory structures and filesystem persistence
 * Security
-    * No authentication (local/dev usage)
+  * No authentication (local/dev usage)
 * Observability
-    * Basic structured logging to stdout
+  * Basic structured logging to stdout
 
-7. Explicit Non-Goals
+## 7. Explicit Non-Goals
+
 * Performance or load testing
 * Large-scale data retention
 * Dynamic or scripted responses (for now)
