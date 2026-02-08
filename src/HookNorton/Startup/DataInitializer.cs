@@ -11,7 +11,7 @@ namespace HookNorton.Startup;
 /// Ensures the creation and validation of necessary data directories,
 /// loads route configurations, and restores request history from persistent storage.
 /// </summary>
-public class InitialDataInitializer : IAsyncInitializer
+public class DataInitializer : IAsyncInitializer
 {
     private readonly RouteConfigPersistenceService _routePersistence;
 
@@ -25,7 +25,7 @@ public class InitialDataInitializer : IAsyncInitializer
 
     private readonly HookNortonOptions _options;
 
-    public InitialDataInitializer(
+    public DataInitializer(
         RouteConfigPersistenceService routePersistence,
         IFileSystem fileSystem,
         RequestRecorder requestRecorder,

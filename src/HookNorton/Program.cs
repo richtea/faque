@@ -4,7 +4,6 @@ using AutofacSerilogIntegration;
 using HookNorton.Middleware;
 using HookNorton.Startup;
 using Serilog;
-using ILogger = Serilog.ILogger;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
