@@ -11,6 +11,8 @@ namespace HookNorton.Controllers;
 [ApiController]
 [Route("$$/api/requests")]
 [Produces("application/json")]
+[EndpointGroupName("v1")]
+[Tags("Requests")]
 public class RequestsController : ControllerBase
 {
     private readonly RequestRecorder _recorder;

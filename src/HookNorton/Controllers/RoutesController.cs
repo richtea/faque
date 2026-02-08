@@ -8,6 +8,8 @@ namespace HookNorton.Controllers;
 
 [ApiController]
 [Route("$$/api/routes")]
+[EndpointGroupName("v1")]
+[Tags("Routes")]
 public class RoutesController : ControllerBase
 {
     private readonly RouteConfigStore _routeStore;

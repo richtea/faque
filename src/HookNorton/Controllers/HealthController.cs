@@ -8,6 +8,8 @@ namespace HookNorton.Controllers;
 [ApiController]
 [Route("$$/api/health")]
 [Produces("application/json")]
+[EndpointGroupName("v1")]
+[Tags("Health")]
 public class HealthController : ControllerBase
 {
     /// <summary>

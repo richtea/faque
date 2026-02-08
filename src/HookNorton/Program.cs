@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using AutofacSerilogIntegration;
 using HookNorton.Middleware;
 using HookNorton.Startup;
+using Scalar.AspNetCore;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -14,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureServices(builder.Configuration);
 builder.Host
     .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-    .ConfigureContainer<ContainerBuilder>((cb) =>
+    .ConfigureContainer<ContainerBuilder>(cb =>
     {
         cb.RegisterLogger();
     })
@@ -38,6 +39,15 @@ app.UseFakeApi();
 app.UseRouting();
 
 app.MapControllers();
+
+app.MapOpenApi("/$$/openapi/{documentName}.json");
+app.MapScalarApiReference(
+    "/$$/scalar",
+    options =>
+{
+    options.WithTitle("HookNorton API Reference");
+    options.WithOpenApiRoutePattern("/$$/openapi/{documentName}.json");
+});
 
 Log.Information("HookNorton starting on HTTP: http://localhost:8080, HTTPS: https://localhost:8081");
 

@@ -35,6 +35,16 @@ public static class CompositionRoot
             });
 
         services.AddEndpointsApiExplorer();
+        services.AddOpenApi(options =>
+        {
+            options.AddDocumentTransformer((document, _, _) =>
+            {
+                document.Info.Title = "HookNorton API";
+                document.Info.Version = "v1";
+                document.Info.Description = "API for managing Fake API routes and viewing captured requests.";
+                return Task.CompletedTask;
+            });
+        });
 
         // Add custom services
         services.AddSingleton<IFileSystem, FileSystem>();

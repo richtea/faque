@@ -50,9 +50,7 @@ public class FakeApiMiddleware
         var path = context.Request.Path.Value ?? "/";
 
         // Skip if this is a Developer API or Web UI request
-        if (path.StartsWith("/$$/api/", StringComparison.OrdinalIgnoreCase) ||
-            path.StartsWith("/$$/web/", StringComparison.OrdinalIgnoreCase) ||
-            path.Equals("/$$/web", StringComparison.OrdinalIgnoreCase))
+        if (path.StartsWith("/$$/", StringComparison.OrdinalIgnoreCase))
         {
             await _next(context);
             return;
