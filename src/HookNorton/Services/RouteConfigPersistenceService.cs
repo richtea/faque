@@ -75,9 +75,8 @@ public class RouteConfigPersistenceService : BackgroundService
             }
 
             var json = _fileSystem.File.ReadAllText(optionsRouteConfigPath);
-            var jsonOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-            var data = JsonSerializer.Deserialize<RouteConfigFile>(json, jsonOptions);
+            var data = JsonSerializer.Deserialize<RouteConfigFile>(json, _jsonOptions);
             if (data?.Routes != null)
             {
                 _routeStore.LoadRoutes(data.Routes);
@@ -102,6 +101,7 @@ public class RouteConfigPersistenceService : BackgroundService
         _routeStore.RoutesChanged -= OnRoutesChanged;
         _saveSemaphore.Dispose();
         base.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     /// <inheritdoc />
@@ -162,7 +162,13 @@ public class RouteConfigPersistenceService : BackgroundService
         await _saveSemaphore.WaitAsync(cancellationToken);
         try
         {
-            var routes = _routeStore.GetAll().ToList();
+            List<RouteConfiguration> routes;
+            using (await _saveLock.LockAsync(cancellationToken))
+            {
+                routes = _routeStore.GetAll().ToList();
+                _hasPendingChanges = false;
+            }
+
             var directory = _fileSystem.Path.GetDirectoryName(_options.RouteConfigPath);
             if (!string.IsNullOrEmpty(directory))
             {
@@ -181,11 +187,6 @@ public class RouteConfigPersistenceService : BackgroundService
             }
 
             _fileSystem.File.Move(tempPath, _options.RouteConfigPath);
-
-            using (await _saveLock.LockAsync(cancellationToken))
-            {
-                _hasPendingChanges = false;
-            }
 
             _logger.Debug("Saved {Count} routes to {Path}", routes.Count, _options.RouteConfigPath);
         }
