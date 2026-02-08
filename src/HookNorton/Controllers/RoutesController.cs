@@ -48,8 +48,7 @@ public class RoutesController : ControllerBase
     {
         var pathPattern = Uri.UnescapeDataString(urlEncodedPath);
         var result = _routeStore.Get(method, pathPattern);
-        var x = result.ToActionResult(this, Request.Path);
-        return x;
+        return result.ToActionResult(this, Request.Path);
     }
 
     /// <summary>

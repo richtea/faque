@@ -1,6 +1,5 @@
 using System.IO.Abstractions;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using HookNorton.Models;
 using HookNorton.Startup;
 using Microsoft.AspNetCore.Http.Json;
@@ -162,14 +161,14 @@ public class RouteConfigPersistenceService : BackgroundService
         await _saveSemaphore.WaitAsync(cancellationToken);
         try
         {
-            var routes = _routeStore.GetAll();
+            var routes = _routeStore.GetAll().ToList();
             var directory = _fileSystem.Path.GetDirectoryName(_options.RouteConfigPath);
             if (!string.IsNullOrEmpty(directory))
             {
                 _fileSystem.Directory.CreateDirectory(directory);
             }
 
-            var json = JsonSerializer.Serialize(new { routes }, _jsonOptions);
+            var json = JsonSerializer.Serialize(new RouteConfigFile { Routes = routes }, _jsonOptions);
 
             // Atomic write with temp file
             var tempPath = $"{_options.RouteConfigPath}.tmp";
@@ -201,7 +200,6 @@ public class RouteConfigPersistenceService : BackgroundService
 
     private class RouteConfigFile
     {
-        [JsonPropertyName("routes")]
         public List<RouteConfiguration> Routes { get; init; } = [];
     }
 }
