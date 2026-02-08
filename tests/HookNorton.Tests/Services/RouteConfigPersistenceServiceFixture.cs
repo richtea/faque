@@ -10,7 +10,7 @@ using Serilog;
 
 namespace HookNorton.Tests.Services;
 
-public class RouteConfigPersistenceServiceTests
+public class RouteConfigPersistenceServiceFixture
 {
     private readonly Mock<IFileSystem> _fileSystemMock;
 
@@ -22,7 +22,7 @@ public class RouteConfigPersistenceServiceTests
 
     private readonly IOptions<JsonOptions> _jsonOptions;
 
-    public RouteConfigPersistenceServiceTests()
+    public RouteConfigPersistenceServiceFixture()
     {
         _fileSystemMock = new Mock<IFileSystem>();
         _loggerMock = new Mock<ILogger>();
