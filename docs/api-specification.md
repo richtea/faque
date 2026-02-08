@@ -541,12 +541,12 @@ The problem type URIs should link to the corresponding section of RFC9110 as in 
 
 Since route paths may contain special characters (including wildcards), they must be URL-encoded when used in API endpoints.
 
-| Original Path      | URL-Encoded Path            | Full Endpoint Example                              |
-| ------------------ | --------------------------- | -------------------------------------------------- |
-| `/api/users`       | `%2Fapi%2Fusers`            | `/$$/api/routes/GET/%2Fapi%2Fusers`            |
-| `/api/users/*`     | `%2Fapi%2Fusers%2F%2A`      | `/$$/api/routes/GET/%2Fapi%2Fusers%2F%2A`      |
-| `/webhooks/github` | `%2Fwebhooks%2Fgithub`      | `/$$/api/routes/POST/%2Fwebhooks%2Fgithub`     |
-| `/api/*/status`    | `%2Fapi%2F%2A%2Fstatus`     | `/$$/api/routes/GET/%2Fapi%2F%2A%2Fstatus`     |
+| Original Path      | URL-Encoded Path        | Full Endpoint Example                      |
+| ------------------ | ----------------------- | ------------------------------------------ |
+| `/api/users`       | `%2Fapi%2Fusers`        | `/$$/api/routes/GET/%2Fapi%2Fusers`        |
+| `/api/users/*`     | `%2Fapi%2Fusers%2F%2A`  | `/$$/api/routes/GET/%2Fapi%2Fusers%2F%2A`  |
+| `/webhooks/github` | `%2Fwebhooks%2Fgithub`  | `/$$/api/routes/POST/%2Fwebhooks%2Fgithub` |
+| `/api/*/status`    | `%2Fapi%2F%2A%2Fstatus` | `/$$/api/routes/GET/%2Fapi%2F%2A%2Fstatus` |
 
 **Note:** Most HTTP clients and programming languages provide built-in URL encoding functions:
 

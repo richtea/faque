@@ -131,7 +131,6 @@ UI is a thin client over the Developer API.
   * Configurable:
     * Max request history size (N)
     * Max request body size
-    * Persistence enabled/disabled
 
 ## 6. Non-Functional Characteristics
 

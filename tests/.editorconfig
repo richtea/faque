@@ -1,0 +1,6 @@
+[*.cs]
+# SA1300 - Element should begin with an uppercase letter
+# Not applicable to test files
+dotnet_diagnostic.SA1300.severity = none
+
+
