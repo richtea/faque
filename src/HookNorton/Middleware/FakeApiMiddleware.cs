@@ -22,7 +22,7 @@ public class FakeApiMiddleware
     /// Initializes a new instance of the <see cref="FakeApiMiddleware" /> class.
     /// </summary>
     /// <param name="next">The next middleware in the pipeline.</param>
-    /// <param name="problemDetailsFactory">The problem details factory.</param>
+    /// <param name="problemDetailsFactory">The problem-details factory.</param>
     /// <param name="logger">The logger.</param>
     public FakeApiMiddleware(RequestDelegate next, ProblemDetailsFactory problemDetailsFactory, ILogger logger)
     {

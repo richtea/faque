@@ -11,6 +11,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
 
 builder.Services.ConfigureServices(builder.Configuration);
 builder.Host
@@ -33,11 +34,13 @@ app.UseStatusCodePages();
 
 app.UseStaticFiles(); // Serve static files from wwwroot
 
+// Service defaults
+app.MapDefaultEndpoints();
+
 // Use Fake API middleware before routing
 app.UseFakeApi();
 
 app.UseRouting();
-
 app.MapControllers();
 
 app.MapOpenApi("/$$/openapi/{documentName}.json");

@@ -31,4 +31,8 @@
     <AdditionalFiles Include="../../StyleCop.json" Link="StyleCop.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HookNorton.ServiceDefaults\HookNorton.ServiceDefaults.csproj" />
+  </ItemGroup>
+
 </Project>
