@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using AutofacSerilogIntegration;
 using HookNorton.Middleware;
 using HookNorton.Startup;
+using Microsoft.Extensions.FileProviders;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -32,7 +33,11 @@ app.UseExceptionHandler();
 // Returns the Problem Details response for (empty) non-successful responses
 app.UseStatusCodePages();
 
-app.UseStaticFiles(); // Serve static files from wwwroot
+app.UseStaticFiles(new StaticFileOptions
+{
+    RequestPath = "/$$/web",
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+}); // Serve static files from wwwroot
 
 // Service defaults
 app.MapDefaultEndpoints();
@@ -45,14 +50,12 @@ app.MapControllers();
 
 app.MapOpenApi("/$$/openapi/{documentName}.json");
 app.MapScalarApiReference(
-    "/$$/scalar",
+    "/$$/docs",
     options =>
 {
     options.WithTitle("HookNorton API Reference");
     options.WithOpenApiRoutePattern("/$$/openapi/{documentName}.json");
 });
-
-Log.Information("HookNorton starting on HTTP: http://localhost:8080, HTTPS: https://localhost:8081");
 
 await app.InitAndRunAsync();
 

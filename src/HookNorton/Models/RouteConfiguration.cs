@@ -14,7 +14,7 @@ public class RouteConfiguration
     public string Method { get; init; } = string.Empty;
 
     /// <summary>
-    /// Gets the path pattern for this route (e.g., /api/users/{id}).
+    /// Gets the path pattern for this route (e.g., /api/users/*).
     /// </summary>
     public string PathPattern { get; init; } = string.Empty;
 
