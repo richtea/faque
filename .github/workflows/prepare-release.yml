@@ -47,6 +47,8 @@ jobs:
           else
             echo "'autorelease' label exists"
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Update changelog
         id: update-changelog
