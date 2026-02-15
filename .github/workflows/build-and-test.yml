@@ -80,11 +80,8 @@ jobs:
         id: prepare_container
         run: |
           curl -sSL https://aspire.dev/install.sh | bash
-          echo "$HOME/.aspire/bin" >> $GITHUB_PATH
           echo "${HOME}/.aspire/bin" >> $GITHUB_PATH
           echo "ASPIRE_PATH=$HOME/.aspire/bin" >> $GITHUB_ENV
-        env:
-          PATH: ${{ env.PATH }}:$HOME/.aspire/bin
 
       - name: Prepare compose and build container
         if: ${{ inputs.create-container == true }}
@@ -101,8 +98,6 @@ jobs:
           echo "compose-dir=$COMPOSE_DIR" >> $GITHUB_OUTPUT
           echo "compose-file=$COMPOSE_FILE" >> $GITHUB_OUTPUT
           docker compose -f "$COMPOSE_FILE" build
-        env:
-          PATH: ${{ env.PATH }}:$HOME/.aspire/bin
 
       - name: Tag and push container to GHCR
         if: ${{ inputs.create-container == true }}
