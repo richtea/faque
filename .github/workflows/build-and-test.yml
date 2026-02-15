@@ -90,11 +90,13 @@ jobs:
           export PATH="$HOME/.aspire/bin:$PATH"
           cd src/Faque.AppHost
           aspire do prepare-compose --environment production
+          echo "Locate compose file"
           COMPOSE_FILE=$(find "$GITHUB_WORKSPACE/src/Faque.AppHost" -name 'docker-compose*.yml' 2>/dev/null | head -1)
           if [[ -z "$COMPOSE_FILE" ]]; then
             COMPOSE_FILE="$GITHUB_WORKSPACE/src/Faque.AppHost/aspire-output/docker-compose.yml"
           fi
           COMPOSE_DIR=$(dirname "$COMPOSE_FILE")
+          echo "Store compose file"
           echo "compose-dir=$COMPOSE_DIR" >> $GITHUB_OUTPUT
           echo "compose-file=$COMPOSE_FILE" >> $GITHUB_OUTPUT
           docker compose -f "$COMPOSE_FILE" build
