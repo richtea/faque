@@ -1,4 +1,4 @@
-# HookNorton Developer API Specification
+# Faque Developer API Specification
 
 **Version:** 1.0  
 **Base URL:** `http://localhost:8080/$$/api` (HTTP) or `https://localhost:8081/$$/api` (HTTPS)  
@@ -6,7 +6,7 @@
 
 ## Overview
 
-The Developer API provides management and inspection capabilities for the HookNorton webhook testing service. It allows clients to configure routes for the Fake API and inspect incoming request history.
+The Developer API provides management and inspection capabilities for the Faque webhook testing service. It allows clients to configure routes for the Fake API and inspect incoming request history.
 
 **Key Characteristics:**
 

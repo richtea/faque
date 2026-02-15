@@ -16,7 +16,7 @@ function App() {
       {/* Header */}
       <header className="border-b border-border px-6 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">HookNorton</h1>
+          <h1 className="text-2xl font-bold">Faque</h1>
           <ThemeToggle />
         </div>
       </header>

@@ -1,4 +1,4 @@
-# HookNorton Frontend Implementation Plan
+# Faque Frontend Implementation Plan
 
 ## Technology Stack
 - **UI Framework**: React 19 + TypeScript

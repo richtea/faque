@@ -1,6 +1,6 @@
-# HookNorton
+# Faque
 
-A lightweight webhook/API testing service for development and automated testing. HookNorton exposes a configurable fake
+A lightweight webhook/API testing service for development and automated testing. Faque exposes a configurable fake
 HTTP API that records incoming requests and responds deterministically based on route configuration.
 
 ## Features
@@ -20,7 +20,7 @@ HTTP API that records incoming requests and responds deterministically based on 
 ```bash
 docker run -p 8080:8080 \
   -e Kestrel__Endpoints__http__Url='http://*:8080' \
-  -v hook-norton-data:/app/data \
+  -v faque-data:/app/data \
   api:latest
 ```
 

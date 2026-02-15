@@ -1,8 +1,8 @@
-# HookNorton Backend Implementation
+# Faque Backend Implementation
 
 ## Overview
 
-The HookNorton backend has been implemented according to the specifications in [docs/api-specification.md](docs/api-specification.md) and [docs/high-level-specification.md](docs/high-level-specification.md).
+The Faque backend has been implemented according to the specifications in [docs/api-specification.md](docs/api-specification.md) and [docs/high-level-specification.md](docs/high-level-specification.md).
 
 ## Project Structure
 
@@ -11,7 +11,7 @@ Following the [dotnet project layout conventions](https://gist.github.com/davidf
 ```
 /
 ├── src/
-│   └── HookNorton/              # Main ASP.NET Core Web API project
+│   └── Faque/              # Main ASP.NET Core Web API project
 │       ├── Common/              # Result pattern and error types
 │       ├── Configuration/       # IOptions configuration
 │       ├── Controllers/         # Developer API controllers
@@ -20,10 +20,10 @@ Following the [dotnet project layout conventions](https://gist.github.com/davidf
 │       ├── Services/            # Business logic services
 │       └── wwwroot/             # Static files (placeholder UI)
 ├── tests/
-│   ├── HookNorton.Tests/        # Unit tests (xUnit V3, AwesomeAssertions, Moq)
-│   └── HookNorton.Integration.Tests/  # Integration tests (WebApplicationFactory)
+│   ├── Faque.Tests/        # Unit tests (xUnit V3, AwesomeAssertions, Moq)
+│   └── Faque.Integration.Tests/  # Integration tests (WebApplicationFactory)
 ├── docs/                        # Specification documents
-└── HookNorton.sln              # Solution file
+└── Faque.sln              # Solution file
 ```
 
 ## Key Features Implemented
@@ -91,7 +91,7 @@ Following the [dotnet project layout conventions](https://gist.github.com/davidf
 dotnet build
 
 # Run
-cd src/HookNorton
+cd src/Faque
 dotnet run
 
 # Access
@@ -108,10 +108,10 @@ dotnet run
 dotnet test
 
 # Run unit tests only
-dotnet test tests/HookNorton.Tests
+dotnet test tests/Faque.Tests
 
 # Run integration tests only
-dotnet test tests/HookNorton.Integration.Tests
+dotnet test tests/Faque.Integration.Tests
 ```
 
 ## Test Conventions

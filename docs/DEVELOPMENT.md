@@ -1,4 +1,4 @@
-# Development
+# Development Guide
 
 This document outlines how to set up your local development environment and contribute to this project.
 
@@ -13,9 +13,9 @@ This document outlines how to set up your local development environment and cont
 
 ```text
 ├── src/
-│   ├── HookNorton/              # ASP.NET Core backend API
-│   ├── HookNorton.AppHost/      # .NET Aspire app orchestration
-│   ├── HookNorton.ServiceDefaults/  # Shared service defaults
+│   ├── Faque/                   # ASP.NET Core backend API
+│   ├── Faque.AppHost/           # .NET Aspire app orchestration
+│   ├── Faque.ServiceDefaults/   # Shared service defaults
 │   └── frontend/                # React TypeScript frontend
 ├── tests/                       # Unit and integration tests
 ├── docs/                        # Specification documents
@@ -27,13 +27,13 @@ This document outlines how to set up your local development environment and cont
 **Unit tests:**
 
 ```bash
-dotnet test tests/HookNorton.Tests/
+dotnet test tests/Faque.Tests/
 ```
 
 **Integration tests:**
 
 ```bash
-dotnet test tests/HookNorton.Integration.Tests/
+dotnet test tests/Faque.Integration.Tests/
 ```
 
 ## Running Locally
@@ -43,7 +43,7 @@ For an integrated development experience with .NET Aspire:
 1. **Navigate to the AppHost:**
 
    ```bash
-   cd src/HookNorton.AppHost
+   cd src/Faque.AppHost
    ```
 
 2. **Run the orchestrated application:**

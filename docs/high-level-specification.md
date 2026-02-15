@@ -1,8 +1,8 @@
-# HookNorton — Software Specification
+# Faque — Software Specification
 
 ## 1. Purpose & Scope
 
-HookNorton is a lightweight webhook/API testing service used during development and automated testing. It exposes a
+Faque is a lightweight webhook/API testing service used during development and automated testing. It exposes a
 configurable fake HTTP API that records incoming requests and responds deterministically based on path and method
 configuration.
 
@@ -60,12 +60,12 @@ Request history characteristics:
 
 * Stored in-memory, capped to latest N requests
 * FIFO eviction when capacity is exceeded
-* Persisted to /opt/hooknorton/data
+* Persisted to /opt/faque/data
 * Raw body stored; UI may render JSON bodies as parsed JSON when applicable
 
 ## 4. API Surface
 
-HookNorton is exposed via 3 groups of endpoints: the Developer API, the Fake API, and the Web UI. All endpoints are exposed on container ports 8080 (HTTP) and 8081 (HTTPS).
+Faque is exposed via 3 groups of endpoints: the Developer API, the Fake API, and the Web UI. All endpoints are exposed on container ports 8080 (HTTP) and 8081 (HTTPS).
 
 The Developer API is served at base path `/$$/api`, the Web UI is served from `/$$/web`, and the Fake API handles all other paths.
 
@@ -77,7 +77,7 @@ Configuration endpoints
 
 * Create/update/delete route configurations
 * List all configured routes
-* Load/save configurations from /opt/hooknorton/config
+* Load/save configurations from /opt/faque/config
 
 Request history endpoints
 
