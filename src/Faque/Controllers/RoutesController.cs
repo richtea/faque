@@ -13,10 +13,11 @@ namespace Faque.Controllers;
 public class RoutesController : ControllerBase
 {
     private readonly RouteConfigStore _routeStore;
+
     private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RoutesController"/> class.
+    /// Initializes a new instance of the <see cref="RoutesController" /> class.
     /// </summary>
     /// <param name="routeStore">The route configuration store.</param>
     /// <param name="logger">The logger.</param>
@@ -95,7 +96,14 @@ public class RoutesController : ControllerBase
         // Return 201 Created for new routes, 200 OK for updates
         if (expectedVersion == null)
         {
-            return CreatedAtAction(nameof(GetRoute), new { method, urlEncodedPath }, result.Value);
+            return CreatedAtAction(
+                nameof(GetRoute),
+                new
+                {
+                    method,
+                    urlEncodedPath,
+                },
+                result.Value);
         }
 
         return Ok(result.Value);

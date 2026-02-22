@@ -33,11 +33,12 @@ app.UseExceptionHandler();
 // Returns the Problem Details response for (empty) non-successful responses
 app.UseStatusCodePages();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    RequestPath = "/$$/web",
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
-}); // Serve static files from wwwroot
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        RequestPath = "/$$/web",
+        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+    }); // Serve static files from wwwroot
 
 // Service defaults
 app.MapDefaultEndpoints();
@@ -52,16 +53,17 @@ app.MapOpenApi("/$$/openapi/{documentName}.json");
 app.MapScalarApiReference(
     "/$$/docs",
     options =>
-{
-    options.WithTitle("Faque API Reference");
-    options.WithOpenApiRoutePattern("/$$/openapi/{documentName}.json");
-});
+    {
+        options.WithTitle("Faque API Reference");
+        options.WithOpenApiRoutePattern("/$$/openapi/{documentName}.json");
+    });
 
 await app.InitAndRunAsync();
 
 /// <summary>
 /// The entry point for the application.
 /// </summary>
+
 // ReSharper disable once ClassNeverInstantiated.Global
 #pragma warning disable ASP0027
 public partial class Program;

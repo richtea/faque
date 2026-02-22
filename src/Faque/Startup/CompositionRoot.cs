@@ -1,6 +1,7 @@
 using System.IO.Abstractions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Faque.Middleware;
 using Faque.Services;
 
 namespace Faque.Startup;
@@ -44,6 +45,8 @@ public static class CompositionRoot
                 document.Info.Description = "API for managing Fake API routes and viewing captured requests.";
                 return Task.CompletedTask;
             });
+
+            options.AddSchemaTransformer<RemoveStandardWordingSchemaTransformer>();
         });
 
         // Add custom services

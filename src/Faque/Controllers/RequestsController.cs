@@ -16,11 +16,13 @@ namespace Faque.Controllers;
 public class RequestsController : ControllerBase
 {
     private readonly RequestRecorder _recorder;
+
     private readonly PersistenceService _persistence;
+
     private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RequestsController"/> class.
+    /// Initializes a new instance of the <see cref="RequestsController" /> class.
     /// </summary>
     /// <param name="recorder">The request recorder.</param>
     /// <param name="persistence">The persistence service.</param>
@@ -40,15 +42,16 @@ public class RequestsController : ControllerBase
     /// </summary>
     /// <returns>A list of request summaries.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(typeof(RequestSummaryCollectionModel), 200)]
     public IActionResult GetAllRequests()
     {
         var requests = _recorder.GetRequestSummaries();
-        return Ok(new
-        {
-            requests,
-            totalCount = requests.Count,
-        });
+        return Ok(
+            new RequestSummaryCollectionModel
+            {
+                Requests = requests,
+                TotalCount = requests.Count,
+            });
     }
 
     /// <summary>
@@ -57,8 +60,8 @@ public class RequestsController : ControllerBase
     /// <param name="id">The request ID.</param>
     /// <returns>The request record if found, otherwise Not Found.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(RequestRecord), 200)]
-    [ProducesResponseType(typeof(ProblemDetails), 404)]
+    [ProducesResponseType(typeof(RequestRecord), 200, "application/json")]
+    [ProducesResponseType(typeof(ProblemDetails), 404, "application/problem+json")]
     public IActionResult GetRequest(string id)
     {
         var result = _recorder.GetRequest(id);

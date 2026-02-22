@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))"/>
 
 
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
-  </ItemGroup>
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute"/>
+    </ItemGroup>
 
-  <PropertyGroup>
-    <AnalysisMode>Minimum</AnalysisMode>
-  </PropertyGroup>
+    <PropertyGroup>
+        <AnalysisMode>Minimum</AnalysisMode>
+    </PropertyGroup>
 
-  <!-- This ItemGroup causes any files in the TestFiles folder to be copied to output -->
-  <ItemGroup>
-    <None Include="_TestFiles\**" CopyToOutputDirectory="PreserveNewest" LinkBase="_TestFiles\" />
-  </ItemGroup>
+    <!-- This ItemGroup causes any files in the TestFiles folder to be copied to output -->
+    <ItemGroup>
+        <None Include="_TestFiles\**" CopyToOutputDirectory="PreserveNewest" LinkBase="_TestFiles\"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AwesomeAssertions" />
-    <PackageReference Include="AwesomeAssertions.Analyzers">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AwesomeAssertions"/>
+        <PackageReference Include="AwesomeAssertions.Analyzers">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Xunit" />
-    <Using Include="AwesomeAssertions" />
-  </ItemGroup>
+    <ItemGroup>
+        <Using Include="Xunit"/>
+        <Using Include="AwesomeAssertions"/>
+    </ItemGroup>
 
 </Project>

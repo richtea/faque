@@ -132,7 +132,7 @@ csharp_style_conditional_delegate_call = true:suggestion
 
 # Modifier preferences
 csharp_prefer_static_local_function = true:warning
-csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:silent
+csharp_preferred_modifier_order = public, private, protected, internal, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, volatile, async:silent
 
 # Code-block preferences
 csharp_prefer_braces = true:silent
@@ -150,7 +150,7 @@ csharp_style_unused_value_assignment_preference = discard_variable:suggestion
 csharp_style_unused_value_expression_statement_preference = discard_variable:silent
 
 # file-scoped namespace preferences
-csharp_style_namespace_declarations=file_scoped:suggestion
+csharp_style_namespace_declarations = file_scoped:suggestion
 
 # 'using' directive preferences
 dotnet_diagnostic.SA1200.severity = none
@@ -218,7 +218,8 @@ dotnet_diagnostic.SA1010.severity = none
 #### Naming styles ####
 [*.{cs,vb}]
 guidelines = 120
-guidelines_style = 1.5px dashed 40b22222
+guidelines_style =
+1.5px dashed 40b22222
 
 # Naming rules
 
@@ -226,9 +227,9 @@ guidelines_style = 1.5px dashed 40b22222
 dotnet_diagnostic.SA1309.severity = none
 
 # IDE0055: Fix formatting
-dotnet_diagnostic.IDE0046.severity = none   # 'if' statement can be simplified
-dotnet_diagnostic.IDE0053.severity = none   # Use expression body for lambda expression
-dotnet_diagnostic.IDE0055.severity = warning  # Fix formatting
+dotnet_diagnostic.IDE0046.severity = none # 'if' statement can be simplified
+dotnet_diagnostic.IDE0053.severity = none # Use expression body for lambda expression
+dotnet_diagnostic.IDE0055.severity = warning # Fix formatting
 
 # Sort using and Import directives with System.* appearing first
 dotnet_sort_system_directives_first = true
@@ -290,7 +291,7 @@ dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.symbols = static
 dotnet_naming_rule.static_readonly_fields_should_be_pascal_case.style = static_readonly_field_style
 
 dotnet_naming_symbols.static_readonly_fields.applicable_kinds = field
-dotnet_naming_symbols.static_readonly_fields.applicable_accessibilities  = private
+dotnet_naming_symbols.static_readonly_fields.applicable_accessibilities = private
 dotnet_naming_symbols.static_readonly_fields.required_modifiers = static, readonly
 
 dotnet_naming_style.static_readonly_field_style.capitalization = pascal_case
@@ -358,9 +359,9 @@ dotnet_naming_style.prefix_type_parameters_with_t_style.capitalization = pascal_
 dotnet_naming_style.prefix_type_parameters_with_t_style.required_prefix = T
 
 dotnet_naming_symbols.type_parameter_group.applicable_kinds = type_parameter
-dotnet_naming_rule.type_parameter_rule.symbols              = type_parameter_group
-dotnet_naming_rule.type_parameter_rule.style                = prefix_type_parameters_with_t_style
-dotnet_naming_rule.type_parameter_rule.severity             = warning
+dotnet_naming_rule.type_parameter_rule.symbols = type_parameter_group
+dotnet_naming_rule.type_parameter_rule.style = prefix_type_parameters_with_t_style
+dotnet_naming_rule.type_parameter_rule.severity = warning
 
 # error RS2008: Enable analyzer release tracking for the analyzer project containing rule '{0}'
 dotnet_diagnostic.RS2008.severity = none
@@ -433,8 +434,8 @@ dotnet_code_quality.CA1707.api_surface = public
 dotnet_naming_style.test_class_style.capitalization = pascal_case
 dotnet_naming_style.test_class_style.required_suffix = Tests
 
-dotnet_naming_rule.test_classes_must_have_suffix.symbols  = public_classes
-dotnet_naming_rule.test_classes_must_have_suffix.style    = test_class_style
+dotnet_naming_rule.test_classes_must_have_suffix.symbols = public_classes
+dotnet_naming_rule.test_classes_must_have_suffix.style = test_class_style
 dotnet_naming_rule.test_classes_must_have_suffix.severity = suggestion
 
 

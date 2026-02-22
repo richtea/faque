@@ -72,7 +72,7 @@ public class PersistenceService
             return Result.Success();
         }
         catch (IOException ex) when (_fileSystem.File.Exists(
-            _fileSystem.Path.Combine(_options.RequestHistoryPath, $"{request.Id}.json")))
+                                         _fileSystem.Path.Combine(_options.RequestHistoryPath, $"{request.Id}.json")))
         {
             // File already exists (duplicate UUID - should be extremely rare)
             _logger.Warning(ex, "Request file already exists for ID {RequestId}", request.Id);

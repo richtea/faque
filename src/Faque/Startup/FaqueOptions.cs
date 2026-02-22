@@ -8,6 +8,16 @@ public class FaqueOptions
     public const string SectionName = "Faque";
 
     /// <summary>
+    /// Gets the path to the route configuration file.
+    /// </summary>
+    public string RouteConfigPath => Path.Combine(DataDirectory, "config", "routes.json");
+
+    /// <summary>
+    /// Gets the path to the request history directory.
+    /// </summary>
+    public string RequestHistoryPath => Path.Combine(DataDirectory, "history");
+
+    /// <summary>
     /// Gets or sets the maximum number of requests to keep in history.
     /// </summary>
     public int MaxRequestHistory { get; set; } = 1000;
@@ -31,14 +41,4 @@ public class FaqueOptions
     /// Gets or sets the directory path for persisted data.
     /// </summary>
     public string DataDirectory { get; set; } = "./data";
-
-    /// <summary>
-    /// Gets the path to the route configuration file.
-    /// </summary>
-    public string RouteConfigPath => Path.Combine(DataDirectory, "config", "routes.json");
-
-    /// <summary>
-    /// Gets the path to the request history directory.
-    /// </summary>
-    public string RequestHistoryPath => Path.Combine(DataDirectory, "history");
 }

@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace Faque.Models;
 
 /// <summary>
@@ -42,7 +40,7 @@ public class RequestSummary
     /// Creates a summary from a full request record.
     /// </summary>
     /// <param name="record">The full request record.</param>
-    /// <returns>A new <see cref="RequestSummary"/> instance.</returns>
+    /// <returns>A new <see cref="RequestSummary" /> instance.</returns>
     public static RequestSummary FromRequestRecord(RequestRecord record)
     {
         const int ExcerptLength = 200;

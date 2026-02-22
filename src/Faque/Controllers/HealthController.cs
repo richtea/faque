@@ -20,10 +20,11 @@ public class HealthController : ControllerBase
     [ProducesResponseType(typeof(object), 200)]
     public IActionResult GetHealth()
     {
-        return Ok(new
-        {
-            status = "healthy",
-            timestamp = DateTimeOffset.UtcNow,
-        });
+        return Ok(
+            new
+            {
+                status = "healthy",
+                timestamp = DateTimeOffset.UtcNow,
+            });
     }
 }
