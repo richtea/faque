@@ -23,6 +23,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/users",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 
@@ -45,6 +46,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/users/*",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 
@@ -67,6 +69,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/users/*",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 
@@ -88,6 +91,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/**",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 
@@ -110,6 +114,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/*/status",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 
@@ -161,6 +166,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/users",
                 Enabled = false,
+                Response = new RouteResponse(),
             },
             new()
             {
@@ -190,6 +196,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/users",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 
@@ -211,6 +218,7 @@ public class RouteMatcherFixture
                 Method = "GET",
                 PathPattern = "/api/users",
                 Enabled = true,
+                Response = new RouteResponse(),
             },
         };
 

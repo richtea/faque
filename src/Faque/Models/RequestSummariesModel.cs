@@ -4,15 +4,15 @@ namespace Faque.Models;
 /// Represents a collection of captured requests.
 /// </summary>
 [PublicAPI]
-public class RequestSummaryCollectionModel
+public class RequestSummariesModel
 {
     /// <summary>
-    /// The total number of requests captured.
+    /// Gets the total number of requests captured.
     /// </summary>
     public int TotalCount { get; init; }
 
     /// <summary>
-    /// The captured requests.
+    /// Gets the captured requests.
     /// </summary>
     public IEnumerable<RequestSummary> Requests { get; init; } = [];
 }

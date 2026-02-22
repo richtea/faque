@@ -1,3 +1,4 @@
+using Faque.Common.OpenApi;
 using Faque.Middleware;
 using Microsoft.OpenApi;
 

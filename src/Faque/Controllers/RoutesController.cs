@@ -28,19 +28,19 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Gets all configured routes.
+    /// Get all configured routes.
     /// </summary>
     /// <returns>A list of all configured routes.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(RouteCollectionModel), 200, MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(RouteConfigurationsModel), 200, MediaTypeNames.Application.Json)]
     public IActionResult GetAllRoutes()
     {
         var routes = _routeStore.GetAll();
-        return Ok(new RouteCollectionModel { Routes = routes });
+        return Ok(new RouteConfigurationsModel { Routes = routes });
     }
 
     /// <summary>
-    /// Gets a specific route by method and URL-encoded path pattern.
+    /// Get a specific route by method and URL-encoded path pattern.
     /// </summary>
     /// <param name="method">The HTTP method.</param>
     /// <param name="urlEncodedPath">The URL-encoded path pattern.</param>
@@ -56,7 +56,7 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Creates or updates a route configuration.
+    /// Create or update a route configuration.
     /// </summary>
     /// <param name="method">The HTTP method.</param>
     /// <param name="urlEncodedPath">The URL-encoded path pattern.</param>
@@ -110,7 +110,7 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Deletes a specific route.
+    /// Delete a specific route.
     /// </summary>
     /// <param name="method">The HTTP method.</param>
     /// <param name="urlEncodedPath">The URL-encoded path pattern.</param>
@@ -126,7 +126,7 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Clears all route configurations.
+    /// Clear all route configurations.
     /// </summary>
     /// <returns>No Content.</returns>
     [HttpDelete]

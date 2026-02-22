@@ -176,7 +176,7 @@ public class RouteConfigStore
         return $"{method.ToUpperInvariant()}:{pathPattern}";
     }
 
-    private Result ValidateRoute(RouteConfiguration route)
+    private static Result ValidateRoute(RouteConfiguration route)
     {
         var validMethods = new[] { "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS" };
         if (!validMethods.Contains(route.Method.ToUpperInvariant()))

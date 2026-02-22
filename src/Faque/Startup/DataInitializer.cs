@@ -7,9 +7,8 @@ using ILogger = Serilog.ILogger;
 namespace Faque.Startup;
 
 /// <summary>
-/// Handles the initialization of essential data for the application at startup.
-/// Ensures the creation and validation of necessary data directories,
-/// loads route configurations, and restores request history from persistent storage.
+/// Handles the initialization of essential data for the application at startup. Ensures the creation and validation of
+/// necessary data directories, loads route configurations, and restores request history from persistent storage.
 /// </summary>
 public class DataInitializer : IAsyncInitializer
 {

@@ -1,7 +1,6 @@
 using System.IO.Abstractions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Faque.Middleware;
 using Faque.Services;
 
 namespace Faque.Startup;
@@ -35,19 +34,9 @@ public static class CompositionRoot
                     new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, false));
             });
 
-        services.AddEndpointsApiExplorer();
-        services.AddOpenApi(options =>
-        {
-            options.AddDocumentTransformer((document, _, _) =>
-            {
-                document.Info.Title = "Faque API";
-                document.Info.Version = "v1";
-                document.Info.Description = "API for managing Fake API routes and viewing captured requests.";
-                return Task.CompletedTask;
-            });
-
-            options.AddSchemaTransformer<RemoveStandardWordingSchemaTransformer>();
-        });
+        services
+            .AddEndpointsApiExplorer()
+            .ConfigureApiDocumentation();
 
         // Add custom services
         services.AddSingleton<IFileSystem, FileSystem>();

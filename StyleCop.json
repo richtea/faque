@@ -20,20 +20,24 @@
   "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
   "settings": {
     "documentationRules": {
-      "copyrightText": "Copyright (c) 2025 Rich Tebb.",
+      "copyrightText": "Copyright (c) 2026 Rich Tebb.",
       "companyName": "richtea",
       "xmlHeader": false,
       "documentExposedElements": true,
-      "documentInternalElements": false
+      "documentInternalElements": false,
+      "excludeFromPunctuationCheck": ["seealso", "example"]
     },
     "layoutRules": {
-      "newlineAtEndOfFile": "require"
+      "newlineAtEndOfFile": "require",
+      "allowDoWhileOnClosingBrace": true
     },
     "indentation": {
       "indentationSize": 4,
       "useTabs": false
     },
-    "namingRules": {},
+    "namingRules": {
+      "includeInferredTupleElementNames": true
+    },
     "orderingRules": {
       "systemUsingDirectivesFirst": true,
       "usingDirectivesPlacement": "outsideNamespace",

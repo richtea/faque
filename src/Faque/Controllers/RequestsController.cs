@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using Faque.Models;
 using Faque.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -38,16 +39,16 @@ public class RequestsController : ControllerBase
     }
 
     /// <summary>
-    /// Gets all captured requests (summary view).
+    /// Get all captured requests (summary view).
     /// </summary>
     /// <returns>A list of request summaries.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(RequestSummaryCollectionModel), 200)]
+    [ProducesResponseType(typeof(RequestSummariesModel), 200)]
     public IActionResult GetAllRequests()
     {
         var requests = _recorder.GetRequestSummaries();
         return Ok(
-            new RequestSummaryCollectionModel
+            new RequestSummariesModel
             {
                 Requests = requests,
                 TotalCount = requests.Count,
@@ -55,13 +56,13 @@ public class RequestsController : ControllerBase
     }
 
     /// <summary>
-    /// Gets details for a specific captured request.
+    /// Get details for a specific captured request.
     /// </summary>
     /// <param name="id">The request ID.</param>
     /// <returns>The request record if found, otherwise Not Found.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(RequestRecord), 200, "application/json")]
-    [ProducesResponseType(typeof(ProblemDetails), 404, "application/problem+json")]
+    [ProducesResponseType(typeof(RequestRecord), 200, MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(ProblemDetails), 404, MediaTypeNames.Application.ProblemJson)]
     public IActionResult GetRequest(string id)
     {
         var result = _recorder.GetRequest(id);
@@ -69,7 +70,7 @@ public class RequestsController : ControllerBase
     }
 
     /// <summary>
-    /// Clears all captured requests.
+    /// Clear all captured requests.
     /// </summary>
     /// <returns>No Content.</returns>
     [HttpDelete]

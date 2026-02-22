@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.OpenApi;
 
-namespace Faque.Middleware;
+namespace Faque.Common.OpenApi;
 
 /// <summary>
 /// A schema transformer that removes any of the standard StyleCop SA1623 prefixes from property descriptions, e.g.
 /// <c>Gets or sets</c>.
 /// </summary>
-public class RemoveStandardWordingSchemaTransformer : IOpenApiSchemaTransformer
+public sealed class RemoveStandardWordingSchemaTransformer : IOpenApiSchemaTransformer
 {
     private static readonly string[] StandardPropertyPrefixes = ["Gets or sets ", "Gets ", "Sets "];
 

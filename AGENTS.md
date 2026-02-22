@@ -49,7 +49,7 @@ dotnet run
 
 ## Code Style and Naming Conventions
 
-### General Guidelines
+### General guidelines
 
 - **Language Version**: C# 14.0
 - **Indentation**: 4 spaces (no tabs).
@@ -57,20 +57,22 @@ dotnet run
 - **Using Directives**: Place `using` directives outside the namespace. `System` namespaces should come first.
 - **Documentation**: Use XML documentation comments (`/// <summary>`) for all public members.
   `GenerateDocumentationFile` is enabled.
+- **Unit test comments**: Add comments for `**** ARRANGE ***`, `**** ACT ****`, and `**** ASSERT ****` sections of the
+  tests.
 
-### Naming Conventions
+### Naming conventions
 
 - **Classes, Methods, Properties**: `PascalCase`.
 - **Private Fields**: `_camelCase` (e.g., `private readonly RequestRecorder _recorder;`).
 - **Local Variables, Parameters**: `camelCase`.
 - **Interfaces**: Prefix with `I` (e.g., `IOpenApiSchemaTransformer`).
-- **Test Fixtures**: The test fixture class should be named <class-under-test>Fixture (e.g. `MyClassFixture`).
-- **Test Methods**: Use `snake_case` describing the expected behavior (e.g., `should_match_exact_path`).
+- **Test Fixtures**: Test fixture classes should be named `<class-under-test>Fixture` (e.g. `MyClassFixture`).
+- **Test Methods**: Use `lower_snake_case` describing the expected behavior (e.g., `should_match_exact_path`).
 
-### Other conventions
+### Error handling
 
-- **Unit test structure**: Add comments for `**** ARRANGE ***`, `**** ACT ****`, and `**** ASSERT ****` sections of the
-  tests.
+- Methods should return the `Result` or `Result<T>` class for normal operations (including likely error conditions).
+- Prefer to re-use an existing error from the `Errors` class, but create a new one if necessary.
 
 ### Libraries and Frameworks
 
@@ -82,7 +84,7 @@ dotnet run
   - **Mocking**: Moq.
 - **Analysis**:
   - StyleCop.Analyzers is used to enforce style rules.
-  - SerilogAnalyzer is used to avoid common mistakes and usage problems.
+  - SerilogAnalyzer is used to avoid common logging mistakes and usage problems.
 
 ## Project Structure
 
