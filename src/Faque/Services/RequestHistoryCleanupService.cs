@@ -11,11 +11,13 @@ namespace Faque.Services;
 public class RequestHistoryCleanupService : BackgroundService
 {
     private readonly IServiceScopeFactory _scopeFactory;
+
     private readonly FaqueOptions _options;
+
     private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RequestHistoryCleanupService"/> class.
+    /// Initializes a new instance of the <see cref="RequestHistoryCleanupService" /> class.
     /// </summary>
     /// <param name="scopeFactory">The service scope factory.</param>
     /// <param name="options">The application options.</param>

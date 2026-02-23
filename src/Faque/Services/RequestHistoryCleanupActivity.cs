@@ -11,12 +11,15 @@ namespace Faque.Services;
 public sealed class RequestHistoryCleanupActivity
 {
     private readonly PersistenceService _persistence;
+
     private readonly RequestRecorder _recorder;
+
     private readonly FaqueOptions _options;
+
     private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RequestHistoryCleanupActivity"/> class.
+    /// Initializes a new instance of the <see cref="RequestHistoryCleanupActivity" /> class.
     /// </summary>
     /// <param name="persistence">The persistence service.</param>
     /// <param name="recorder">The request recorder.</param>

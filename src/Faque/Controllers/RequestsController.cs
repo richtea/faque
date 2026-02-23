@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using Faque.Models;
 using Faque.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,13 @@ namespace Faque.Controllers;
 public class RequestsController : ControllerBase
 {
     private readonly RequestRecorder _recorder;
+
     private readonly PersistenceService _persistence;
+
     private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RequestsController"/> class.
+    /// Initializes a new instance of the <see cref="RequestsController" /> class.
     /// </summary>
     /// <param name="recorder">The request recorder.</param>
     /// <param name="persistence">The persistence service.</param>
@@ -36,29 +39,30 @@ public class RequestsController : ControllerBase
     }
 
     /// <summary>
-    /// Gets all captured requests (summary view).
+    /// Get all captured requests (summary view).
     /// </summary>
     /// <returns>A list of request summaries.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(typeof(RequestSummariesModel), 200)]
     public IActionResult GetAllRequests()
     {
         var requests = _recorder.GetRequestSummaries();
-        return Ok(new
-        {
-            requests,
-            totalCount = requests.Count,
-        });
+        return Ok(
+            new RequestSummariesModel
+            {
+                Requests = requests,
+                TotalCount = requests.Count,
+            });
     }
 
     /// <summary>
-    /// Gets details for a specific captured request.
+    /// Get details for a specific captured request.
     /// </summary>
     /// <param name="id">The request ID.</param>
     /// <returns>The request record if found, otherwise Not Found.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(RequestRecord), 200)]
-    [ProducesResponseType(typeof(ProblemDetails), 404)]
+    [ProducesResponseType(typeof(RequestRecord), 200, MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(ProblemDetails), 404, MediaTypeNames.Application.ProblemJson)]
     public IActionResult GetRequest(string id)
     {
         var result = _recorder.GetRequest(id);
@@ -66,7 +70,7 @@ public class RequestsController : ControllerBase
     }
 
     /// <summary>
-    /// Clears all captured requests.
+    /// Clear all captured requests.
     /// </summary>
     /// <returns>No Content.</returns>
     [HttpDelete]

@@ -16,39 +16,47 @@ public static class Errors
         /// <param name="method">The HTTP method.</param>
         /// <param name="pathPattern">The path pattern.</param>
         /// <returns>A Not Found error.</returns>
-        public static Error NotFound(string method, string pathPattern) =>
-            Error.NotFound(
+        public static Error NotFound(string method, string pathPattern)
+        {
+            return Error.NotFound(
                 "Route.NotFound",
                 $"No route configured for {method} {pathPattern}");
+        }
 
         /// <summary>
         /// Creates an error for an invalid HTTP method.
         /// </summary>
         /// <param name="method">The invalid method.</param>
         /// <returns>A Validation error.</returns>
-        public static Error InvalidMethod(string method) =>
-            Error.Validation(
+        public static Error InvalidMethod(string method)
+        {
+            return Error.Validation(
                 "Route.InvalidMethod",
                 $"HTTP method must be one of: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS. Received: {method}");
+        }
 
         /// <summary>
         /// Creates an error for an invalid status code.
         /// </summary>
         /// <param name="statusCode">The invalid status code.</param>
         /// <returns>A Validation error.</returns>
-        public static Error InvalidStatusCode(int statusCode) =>
-            Error.Validation(
+        public static Error InvalidStatusCode(int statusCode)
+        {
+            return Error.Validation(
                 "Route.InvalidStatusCode",
                 $"Response statusCode must be between 100 and 599. Received: {statusCode}");
+        }
 
         /// <summary>
         /// Creates an error for a missing response configuration.
         /// </summary>
         /// <returns>A Validation error.</returns>
-        public static Error MissingResponse() =>
-            Error.Validation(
+        public static Error MissingResponse()
+        {
+            return Error.Validation(
                 "Route.MissingResponse",
                 "Response configuration is required");
+        }
 
         /// <summary>
         /// Creates an error for concurrent modification of a route.
@@ -56,10 +64,12 @@ public static class Errors
         /// <param name="method">The HTTP method.</param>
         /// <param name="pathPattern">The path pattern.</param>
         /// <returns>A Conflict error.</returns>
-        public static Error ConcurrentModification(string method, string pathPattern) =>
-            Error.Conflict(
+        public static Error ConcurrentModification(string method, string pathPattern)
+        {
+            return Error.Conflict(
                 "Route.ConcurrentModification",
                 $"The route {method} {pathPattern} was modified by another request");
+        }
     }
 
     /// <summary>
@@ -72,10 +82,12 @@ public static class Errors
         /// </summary>
         /// <param name="id">The request ID.</param>
         /// <returns>A Not Found error.</returns>
-        public static Error NotFound(string id) =>
-            Error.NotFound(
+        public static Error NotFound(string id)
+        {
+            return Error.NotFound(
                 "Request.NotFound",
                 $"No request found with ID {id}");
+        }
 
         /// <summary>
         /// Creates an error for when request persistence fails.
@@ -83,10 +95,12 @@ public static class Errors
         /// <param name="id">The request ID.</param>
         /// <param name="reason">The failure reason.</param>
         /// <returns>A Failure error.</returns>
-        public static Error PersistenceFailed(string id, string reason) =>
-            Error.Failure(
+        public static Error PersistenceFailed(string id, string reason)
+        {
+            return Error.Failure(
                 "Request.PersistenceFailed",
                 $"Failed to persist request {id}: {reason}");
+        }
     }
 
     /// <summary>
@@ -100,10 +114,12 @@ public static class Errors
         /// <param name="path">The file path.</param>
         /// <param name="reason">The failure reason.</param>
         /// <returns>A Failure error.</returns>
-        public static Error LoadFailed(string path, string reason) =>
-            Error.Failure(
+        public static Error LoadFailed(string path, string reason)
+        {
+            return Error.Failure(
                 "Persistence.LoadFailed",
                 $"Failed to load data from {path}: {reason}");
+        }
 
         /// <summary>
         /// Creates an error for when saving data fails.
@@ -111,9 +127,11 @@ public static class Errors
         /// <param name="path">The file path.</param>
         /// <param name="reason">The failure reason.</param>
         /// <returns>A Failure error.</returns>
-        public static Error SaveFailed(string path, string reason) =>
-            Error.Failure(
+        public static Error SaveFailed(string path, string reason)
+        {
+            return Error.Failure(
                 "Persistence.SaveFailed",
                 $"Failed to save data to {path}: {reason}");
+        }
     }
 }

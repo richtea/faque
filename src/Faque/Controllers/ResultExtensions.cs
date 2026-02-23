@@ -9,14 +9,17 @@ namespace Faque.Controllers;
 public static class ResultExtensions
 {
     /// <summary>
-    /// Converts a <see cref="Result{T}"/> to an <see cref="IActionResult"/>.
+    /// Converts a <see cref="Result{T}" /> to an <see cref="IActionResult" />.
     /// </summary>
     /// <typeparam name="T">The type of the success value.</typeparam>
     /// <param name="result">The result to convert.</param>
     /// <param name="controller">The controller instance.</param>
     /// <param name="instance">The optional request path instance for problem details.</param>
-    /// <returns>The appropriate <see cref="IActionResult"/>.</returns>
-    public static IActionResult ToActionResult<T>(this Result<T> result, ControllerBase controller, string? instance = null)
+    /// <returns>The appropriate <see cref="IActionResult" />.</returns>
+    public static IActionResult ToActionResult<T>(
+        this Result<T> result,
+        ControllerBase controller,
+        string? instance = null)
     {
         if (result.IsSuccess)
         {
@@ -27,12 +30,12 @@ public static class ResultExtensions
     }
 
     /// <summary>
-    /// Converts a <see cref="Result"/> to an <see cref="IActionResult"/>.
+    /// Converts a <see cref="Result" /> to an <see cref="IActionResult" />.
     /// </summary>
     /// <param name="result">The result to convert.</param>
     /// <param name="controller">The controller instance.</param>
     /// <param name="instance">The optional request path instance for problem details.</param>
-    /// <returns>The appropriate <see cref="IActionResult"/>.</returns>
+    /// <returns>The appropriate <see cref="IActionResult" />.</returns>
     public static IActionResult ToActionResult(this Result result, ControllerBase controller, string? instance = null)
     {
         if (result.IsSuccess)

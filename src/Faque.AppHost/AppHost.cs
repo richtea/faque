@@ -16,7 +16,7 @@ var faque = builder.AddProject<Faque>("faque")
     .PublishAsDockerComposeService((_, _) => { })
     .WithContainerBuildOptions(context =>
     {
-        // Force the tag to be 'latest' so we can use that in the CI pipeline
+        // Force the tag to be 'latest' so we can use a known value in the CI pipeline
         context.LocalImageTag = "latest";
     });
 

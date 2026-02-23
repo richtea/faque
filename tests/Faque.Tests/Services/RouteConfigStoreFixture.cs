@@ -50,7 +50,11 @@ public class RouteConfigStoreFixture
         {
             Method = "GET",
             PathPattern = "/api/users",
-            Response = new RouteResponse { StatusCode = 200, Body = "Original" },
+            Response = new RouteResponse
+            {
+                StatusCode = 200,
+                Body = "Original",
+            },
             Enabled = true,
         };
 
@@ -60,7 +64,11 @@ public class RouteConfigStoreFixture
         {
             Method = "GET",
             PathPattern = "/api/users",
-            Response = new RouteResponse { StatusCode = 200, Body = "Updated" },
+            Response = new RouteResponse
+            {
+                StatusCode = 200,
+                Body = "Updated",
+            },
             Enabled = true,
         };
 
@@ -96,7 +104,11 @@ public class RouteConfigStoreFixture
         {
             Method = "GET",
             PathPattern = "/api/users",
-            Response = new RouteResponse { StatusCode = 200, Body = "Stale" },
+            Response = new RouteResponse
+            {
+                StatusCode = 200,
+                Body = "Stale",
+            },
             Enabled = true,
         };
 
@@ -178,20 +190,21 @@ public class RouteConfigStoreFixture
         var store = new RouteConfigStore();
         var tasks = new List<Task<bool>>();
 
-        for (int i = 0; i < 10; i++)
+        for (var i = 0; i < 10; i++)
         {
             var index = i;
-            tasks.Add(Task.Run(() =>
-            {
-                var route = new RouteConfiguration
+            tasks.Add(
+                Task.Run(() =>
                 {
-                    Method = "GET",
-                    PathPattern = $"/api/route{index}",
-                    Response = new RouteResponse { StatusCode = 200 },
-                    Enabled = true,
-                };
-                return store.Upsert(route, null).IsSuccess;
-            }));
+                    var route = new RouteConfiguration
+                    {
+                        Method = "GET",
+                        PathPattern = $"/api/route{index}",
+                        Response = new RouteResponse { StatusCode = 200 },
+                        Enabled = true,
+                    };
+                    return store.Upsert(route, null).IsSuccess;
+                }));
         }
 
         // **** ACT ****

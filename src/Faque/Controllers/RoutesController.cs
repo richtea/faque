@@ -13,10 +13,11 @@ namespace Faque.Controllers;
 public class RoutesController : ControllerBase
 {
     private readonly RouteConfigStore _routeStore;
+
     private readonly ILogger _logger;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RoutesController"/> class.
+    /// Initializes a new instance of the <see cref="RoutesController" /> class.
     /// </summary>
     /// <param name="routeStore">The route configuration store.</param>
     /// <param name="logger">The logger.</param>
@@ -27,19 +28,19 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Gets all configured routes.
+    /// Get all configured routes.
     /// </summary>
     /// <returns>A list of all configured routes.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(RouteCollectionModel), 200, MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(RouteConfigurationsModel), 200, MediaTypeNames.Application.Json)]
     public IActionResult GetAllRoutes()
     {
         var routes = _routeStore.GetAll();
-        return Ok(new RouteCollectionModel { Routes = routes });
+        return Ok(new RouteConfigurationsModel { Routes = routes });
     }
 
     /// <summary>
-    /// Gets a specific route by method and URL-encoded path pattern.
+    /// Get a specific route by method and URL-encoded path pattern.
     /// </summary>
     /// <param name="method">The HTTP method.</param>
     /// <param name="urlEncodedPath">The URL-encoded path pattern.</param>
@@ -55,7 +56,7 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Creates or updates a route configuration.
+    /// Create or update a route configuration.
     /// </summary>
     /// <param name="method">The HTTP method.</param>
     /// <param name="urlEncodedPath">The URL-encoded path pattern.</param>
@@ -95,14 +96,21 @@ public class RoutesController : ControllerBase
         // Return 201 Created for new routes, 200 OK for updates
         if (expectedVersion == null)
         {
-            return CreatedAtAction(nameof(GetRoute), new { method, urlEncodedPath }, result.Value);
+            return CreatedAtAction(
+                nameof(GetRoute),
+                new
+                {
+                    method,
+                    urlEncodedPath,
+                },
+                result.Value);
         }
 
         return Ok(result.Value);
     }
 
     /// <summary>
-    /// Deletes a specific route.
+    /// Delete a specific route.
     /// </summary>
     /// <param name="method">The HTTP method.</param>
     /// <param name="urlEncodedPath">The URL-encoded path pattern.</param>
@@ -118,7 +126,7 @@ public class RoutesController : ControllerBase
     }
 
     /// <summary>
-    /// Clears all route configurations.
+    /// Clear all route configurations.
     /// </summary>
     /// <returns>No Content.</returns>
     [HttpDelete]

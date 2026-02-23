@@ -1,11 +1,18 @@
 namespace Faque.Models;
 
 /// <summary>
-/// Request model for creating/updating routes.
+/// Data model for creating/updating routes.
 /// </summary>
+[PublicAPI]
 public class RouteUpdateRequestModel
 {
-    public RouteResponse Response { get; set; } = new();
+    /// <summary>
+    /// Gets or sets the response configuration for the route.
+    /// </summary>
+    public required RouteResponse Response { get; init; }
 
-    public bool Enabled { get; set; } = true;
+    /// <summary>
+    /// Gets or sets a value indicating whether the route is enabled.
+    /// </summary>
+    public bool Enabled { get; init; } = true;
 }

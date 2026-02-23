@@ -30,15 +30,15 @@ This exposes the application on port 8080 and mounts a named volume for data per
 
 Once running, you can:
 
-1. **Access the Web UI** at the application root (served from the React frontend)
-2. **Call the fake API** at the routes you've configured (e.g., `GET /api/users` if configured)
+1. **Access the Web UI** at `/$$/web`
+2. **Call the fake API** at the routes you've configured (e.g., `GET /myapi/users` if configured)
 3. **Manage routes** via the API:
-   - `GET /routes` - List all routes
-   - `POST /routes` - Create a new route
-   - `PUT /routes/{id}` - Update a route
-   - `DELETE /routes/{id}` - Delete a route
-4. **View request history** at `/requests`
-5. **Use a browsable interface** at `/$$/docs`
+   - `GET /$$/api/routes` - List all routes
+   - `POST /$$/api/routes` - Create a new route
+   - `PUT /$$/api/routes/{id}` - Update a route
+   - `DELETE /$$/api/routes/{id}` - Delete a route
+4. **View request history** at `/$$/api/requests`
+5. **View OpenAPI definitions** at `/$$/docs`
 
 For detailed API documentation, refer to [docs/api-specification.md](docs/api-specification.md).
 

@@ -9,19 +9,26 @@ namespace Faque.Models;
 public class RouteConfiguration
 {
     /// <summary>
+    /// Gets the route key for storage (method + path pattern).
+    /// </summary>
+    [JsonIgnore]
+    public string Key => $"{Method}:{PathPattern}";
+
+    /// <summary>
     /// Gets the HTTP method for this route.
     /// </summary>
-    public string Method { get; init; } = string.Empty;
+    /// <example>GET</example>
+    public required string Method { get; init; }
 
     /// <summary>
     /// Gets the path pattern for this route (e.g., /api/users/*).
     /// </summary>
-    public string PathPattern { get; init; } = string.Empty;
+    public required string PathPattern { get; init; }
 
     /// <summary>
     /// Gets the configured response for this route.
     /// </summary>
-    public RouteResponse Response { get; init; } = new();
+    public required RouteResponse Response { get; init; }
 
     /// <summary>
     /// Gets a value indicating whether this route is enabled.
@@ -33,10 +40,4 @@ public class RouteConfiguration
     /// </summary>
     [JsonIgnore]
     public int Version { get; set; }
-
-    /// <summary>
-    /// Gets the route key for storage (method + pathPattern).
-    /// </summary>
-    [JsonIgnore]
-    public string Key => $"{Method}:{PathPattern}";
 }

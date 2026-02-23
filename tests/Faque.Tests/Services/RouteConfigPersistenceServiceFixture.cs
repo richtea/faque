@@ -96,7 +96,7 @@ public class RouteConfigPersistenceServiceFixture
         var method = typeof(RouteConfigPersistenceService).GetMethod(
             "SaveRoutesAsync",
             BindingFlags.NonPublic | BindingFlags.Instance);
-        await ((Task)method!.Invoke(service, [CancellationToken.None])!);
+        await (Task)method!.Invoke(service, [CancellationToken.None])!;
 
         // **** ASSERT ****
         // After the save completes, _hasPendingChanges should be TRUE because a change happened during the save.

@@ -18,7 +18,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/users", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****
@@ -35,7 +41,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/users/*", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users/*",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****
@@ -52,7 +64,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/users/*", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users/*",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****
@@ -68,7 +86,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/**", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/**",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****
@@ -85,7 +109,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/*/status", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/*/status",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****
@@ -101,8 +131,20 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/**", Enabled = true, Response = new() { Body = "First" } },
-            new() { Method = "GET", PathPattern = "/api/users/*", Enabled = true, Response = new() { Body = "Second" } },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/**",
+                Enabled = true,
+                Response = new RouteResponse { Body = "First" },
+            },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users/*",
+                Enabled = true,
+                Response = new RouteResponse { Body = "Second" },
+            },
         };
 
         // **** ACT ****
@@ -119,8 +161,20 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/users", Enabled = false },
-            new() { Method = "GET", PathPattern = "/api/users", Enabled = true, Response = new() { Body = "Enabled" } },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users",
+                Enabled = false,
+                Response = new RouteResponse(),
+            },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users",
+                Enabled = true,
+                Response = new RouteResponse { Body = "Enabled" },
+            },
         };
 
         // **** ACT ****
@@ -137,7 +191,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/users", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****
@@ -153,7 +213,13 @@ public class RouteMatcherFixture
         // **** ARRANGE ****
         var routes = new List<RouteConfiguration>
         {
-            new() { Method = "GET", PathPattern = "/api/users", Enabled = true },
+            new()
+            {
+                Method = "GET",
+                PathPattern = "/api/users",
+                Enabled = true,
+                Response = new RouteResponse(),
+            },
         };
 
         // **** ACT ****

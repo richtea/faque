@@ -13,12 +13,15 @@ namespace Faque.Services;
 public class RequestRecorder
 {
     private readonly FaqueOptions _options;
+
     private readonly ConcurrentDictionary<string, RequestRecord> _requests = new();
+
     private readonly ConcurrentQueue<string> _requestOrder = new();
+
     private readonly object _lock = new();
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="RequestRecorder"/> class.
+    /// Initializes a new instance of the <see cref="RequestRecorder" /> class.
     /// </summary>
     /// <param name="options">The application options.</param>
     public RequestRecorder(IOptions<FaqueOptions> options)

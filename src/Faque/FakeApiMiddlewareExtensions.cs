@@ -1,7 +1,3 @@
-using System.Text;
-using Faque.Services;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Faque.Middleware;
 
 /// <summary>

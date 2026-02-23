@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Faque.Common.AspNet;
 
 namespace Faque.Models;
 
@@ -16,6 +16,8 @@ public class RouteResponse
     /// <summary>
     /// Gets or sets the HTTP headers to return.
     /// </summary>
+    [SkipDictionaryKeyPolicy]
+    [KeyValidationRegex(@"^[a-zA-Z0-9!#$%&'*+-.^_`|~]+$")]
     public Dictionary<string, string> Headers { get; set; } = new();
 
     /// <summary>
