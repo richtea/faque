@@ -1,7 +1,7 @@
 name: '[autorelease] On PR merged'
 
 permissions:
-  contents: read
+  contents: write
   packages: write
   attestations: write
 
