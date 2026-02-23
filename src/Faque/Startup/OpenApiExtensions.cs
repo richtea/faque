@@ -23,7 +23,8 @@ public static class OpenApiExtensions
             options
                 .AddSchemaTransformer<RemoveStandardWordingSchemaTransformer>()
                 .AddSchemaTransformer<ProblemDetailsExamplesTransformer>()
-                .AddSchemaTransformer<OpenApiNumberDeastonisher>();
+                .AddSchemaTransformer<OpenApiNumberDeastonisher>()
+                .AddSchemaTransformer<DictionaryKeyValidationTransformer>();
 
             options.CreateSchemaReferenceId = CreateSchemaReferenceId;
         });

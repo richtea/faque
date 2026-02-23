@@ -13,11 +13,17 @@ public class KeyValidationRegexAttribute : ValidationAttribute
 {
     private readonly Regex _regex;
 
-    public KeyValidationRegexAttribute([RegexPattern] string regex)
+    public KeyValidationRegexAttribute([RegexPattern] string pattern)
         : base("Value '{0}' is an invalid key. The key must match the regular expression '{1}'.")
     {
-        _regex = new Regex(regex);
+        Pattern = pattern;
+        _regex = new Regex(pattern);
     }
+
+    /// <summary>
+    /// Gets the pattern to match.
+    /// </summary>
+    public string Pattern { get; }
 
     /// <inheritdoc />
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
