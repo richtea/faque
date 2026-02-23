@@ -23,7 +23,7 @@ jobs:
     outputs:
       build-version: ${{ steps.set_tag.outputs.build-version }}
       tag-version: ${{ steps.set_tag.outputs.tag-version }}
-      is-prerelease: ${{ steps.semver_parser.outputs.prerelease == 'true' }}
+      is-prerelease: ${{ steps.semver_parser.outputs.prerelease != '' }}
       release-notes: ${{ steps.get-release-info.outputs.release-notes }}
     steps:
       - uses: actions/checkout@v6.0.2
@@ -83,4 +83,4 @@ jobs:
 
       - name: Display instructions
         run: |
-          echo "::notice title=Draft Release Prepared::A draft release has been prepared. Publish it to trigger pushing the container to Docker Hub: ${{ steps.create_draft_release.outputs.html_url }}"
+          echo "::notice title=Draft Release Prepared::A draft release (${{ steps.create_draft_release.outputs.id }}) has been prepared. Publish it to trigger pushing the container to Docker Hub: ${{ steps.create_draft_release.outputs.url }}"
