@@ -1,5 +1,10 @@
 name: '[autorelease] On PR merged'
 
+permissions:
+  contents: read
+  packages: write
+  attestations: write
+
 on:
   pull_request:
     branches:
